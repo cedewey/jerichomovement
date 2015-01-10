@@ -1,0 +1,15 @@
+name = Some Tools
+package = Aten
+description = Miscellaneous developer tools
+core = 7.x
+
+dependencies[] = entity
+
+files[] = tests/stools.test
+
+; Information added by Drupal.org packaging script on 2014-11-18
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "stools"
+datestamp = "1416337988"
+

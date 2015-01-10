@@ -1,0 +1,15 @@
+name = OpenAid Home Featured Resources
+description = Adds a featured resources block to the home page
+core = 7.x
+package = OpenAid
+
+dependencies[] = block
+dependencies[] = atom_resources
+dependencies[] = openaid_home_featured_resources_feature
+
+; Information added by Drupal.org packaging script on 2014-11-21
+version = "7.x-2.0-rc2"
+core = "7.x"
+project = "openaid"
+datestamp = "1416608168"
+

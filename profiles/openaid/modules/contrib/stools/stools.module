@@ -1,0 +1,316 @@
+<?php
+
+/**
+ * Concatenate multiple field values
+ *
+ * @param object $entity
+ *   The entity with a field
+ * @param array $fields
+ *   An array of field names
+ * @param string $concat
+ *   The concatentation string. Defaults to ', '
+ * @param string $language
+ *   The language. Defaults to LANGUAGE_NONE
+ *
+ * @return string
+ *   A string of the fields values
+ */
+function stools_concat_field_values($entity, $fields, $concat = ', ', $language = LANGUAGE_NONE) {
+  $value = NULL;
+
+  foreach ($fields as $field) {
+    if (stools_field_has_value($entity, $field, $language)) {
+      if (!$value) {
+        $value = '';
+      }
+      else {
+        $value .= $concat;
+      }
+      $value .= stools_field_value($entity, $field, $language);
+    }
+  }
+
+  return $value;
+}
+
+/**
+ * Check if the field contains a specific value.
+ *
+ * This checks the value/target_id of the field to see if it contains the
+ * specified value.
+ *
+ * @param object $entity
+ *   The entity object
+ * @param string $field
+ *   A string for the field name
+ * @param mixed $value
+ *   A value to see if the field contains
+ * @param string $language
+ *   The language to check. Defaults to LANGUAGE_NONE.
+ *
+ * @return bool
+ *   TRUE if the field contains the specified value, FALSE if not.
+ */
+function stools_field_contains_value($entity, $field, $value, $language = LANGUAGE_NONE) {
+  // does the entity have the field
+  if (!isset($entity->$field)) {
+    return FALSE;
+  }
+
+  $entity_field = $entity->$field;
+
+  // check that the requested language exists
+  if (!isset($entity_field[$language])) {
+    return FALSE;
+  }
+
+  foreach ($entity_field[$language] as $field_value) {
+    if (isset($field_value['value']) && $field_value['value'] === $value) {
+      return TRUE;
+    }
+    if (isset($field_value['target_id']) && $field_value['target_id'] === $value) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
+ * Check if a field has a value
+ *
+ * @param object $entity
+ *   The entity object
+ * @param string $field
+ *   A string for the field name
+ * @param string $language
+ *   The language to check. Defaults to LANGUAGE_NONE.
+ *
+ * @return bool
+ *   TRUE if the field has a value and FALSE if not.
+ */
+function stools_field_has_value($entity, $field, $language = LANGUAGE_NONE) {
+  // does the field exist within the entity?
+  if (!isset($entity->$field)) {
+    return FALSE;
+  }
+
+  $entity_field = $entity->$field;
+
+  // request language should exist
+  if (!isset($entity_field[$language])) {
+    return FALSE;
+  }
+
+  // the array should have more than 0 values
+  if (count($entity_field[$language]) === 0) {
+    return FALSE;
+  }
+
+  // if this field appears to have a value, it may not
+  if (is_array($entity_field[$language])) {
+    $has_value = FALSE;
+    foreach ($entity_field[$language] as $item) {
+      if (array_filter($item)) {
+        $has_value = TRUE;
+        break;
+      }
+    }
+
+    if (!$has_value) {
+      return FALSE;
+    }
+  }
+
+  return TRUE;
+}
+
+/**
+ * Get the value of a field
+ *
+ * @param object $entity
+ *   The entity object
+ * @param string $field
+ *   The field name to get the value of
+ * @param string $language
+ *   The language. Defaults to LANGUAGE_NONE
+ */
+function stools_field_value($entity, $field, $language = LANGUAGE_NONE) {
+  if (stools_field_has_value($entity, $field, $language)) {
+    if (is_array($entity->{$field}) && isset($entity->{$field}[LANGUAGE_NONE])) {
+      $count = count($entity->{$field}[$language]);
+      if (isset($entity->{$field}[$language][0]['value'])) {
+        // value based field
+        $key = 'value';
+      }
+      elseif (isset($entity->{$field}[$language][0]['target_id'])) {
+        // target_id field
+        $key = 'target_id';
+      }
+
+      // single value
+      if ($count === 1) {
+        if (isset($key)) {
+          return $entity->{$field}[$language][0][$key];
+        }
+        return $entity->{$field}[$language][0];
+      }
+
+      $values = array();
+      foreach ($entity->{$field}[$language] as $value) {
+        $this_value = $value;
+        if (isset($key)) {
+          $this_value = $value[$key];
+        }
+        array_push($values, $this_value);
+      }
+      return $values;
+    }
+    elseif (is_string($entity->{$field})) {
+      return $entity->{$field};
+    }
+  }
+}
+
+
+/**
+ * Returns the menu_links depth of the current page
+ *
+ * @return int
+ *   The menu link depth
+ */
+function stools_how_deep() {
+  $depth_query = db_query(
+    'SELECT depth FROM menu_links where link_path = :path',
+    array(':path' => implode('/', arg()))
+  );
+  $depth = $depth_query->fetchCol();
+
+  return $depth[0];
+}
+
+/**
+ * Load and render a block
+ *
+ * @param string $block_module
+ *   module machine name providing the block
+ * @param string $block_name
+ *   block machine_name
+ * @param string $block_id
+ *   block id
+ *
+ * @return string
+ *   The rendered block code
+ */
+function stools_render_block($block_module, $block_name, $block_id = NULL) {
+  if (empty($block_id)) {
+    $block_id = $block_module . '_' . $block_name;
+  }
+  $block = array(
+    block_load($block_module, $block_name),
+  );
+  if (!isset($block[0]->title) || $block[0]->title = '') {
+    $block[0]->title = NULL;
+  }
+  if (!isset($block[0]->region) || $block[0]->region = '') {
+    $block[0]->region = NULL;
+  }
+
+  $blocks_array = _block_get_renderable_array(_block_render_blocks($block));
+  return drupal_render($blocks_array[$block_id]);
+}
+
+
+/**
+ * Returns img markup for an image style from a given field on given node.
+ *  Useful for grabbing images from referenced nodes.
+ *
+ * @param object $node
+ *   The entity object.
+ * @param string $field
+ *   (optional) The machine name of the desired image field.
+ * @param string $image_style
+ *   (optional) The machine name of the desired image style.
+ * @return array
+ *   The HTML markup for the img tag.
+ */
+function stools_get_image_from_node($node, $field, $image_style = 'medium') {
+  // Get the image node.
+  $profile_wrapper = entity_metadata_wrapper('node', $node);
+  $image_node = $profile_wrapper->{$field}->value();
+
+  // Return false if no image node is referenced.
+  if (!$image_node) {
+    return FALSE;
+  }
+
+  // Only used the first value in a multivalue field.
+  if (is_array($image_node)) {
+    $image_node = $image_node[0];
+  }
+
+  $image_wrapper = entity_metadata_wrapper('node', $image_node);
+  $image_file = $image_wrapper->field_image->value();
+
+  // Return false if no image file is set.
+  if (!$image_file) {
+    return FALSE;
+  }
+
+  // Create image markup.
+  return theme_image_style(array(
+    'style_name' => $image_style,
+    'path' => $image_file['uri'],
+    'height' => $image_file['height'],
+    'width' => $image_file['width'],
+    'alt' => $image_file['alt'],
+    'title' => $image_file['title'],
+  ));
+}
+
+/**
+ * Check if a string starts with another string
+ */
+function stools_string_startswith($string, $needle) {
+  if ($string === $needle) {
+    return TRUE;
+  }
+  if (function_exists('mb_substr')) {
+    return mb_substr($string, 0, mb_strlen($needle)) === $needle;
+  }
+  return substr($string, 0, strlen($needle)) === $needle;
+}
+
+/**
+ * Check if a string ends with another string
+ */
+function stools_string_endswith($string, $needle) {
+  if ($string === $needle) {
+    return TRUE;
+  }
+  if (function_exists('mb_substr')) {
+    return mb_substr($string, -1 * mb_strlen($needle)) === $needle;
+  }
+  return substr($string, -1 * strlen($needle)) === $needle;
+}
+
+/**
+ * Check if the term has parent terms
+ */
+function stools_term_has_parent($term) {
+  if (taxonomy_get_parents($term->tid)) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Check if the term is a parent term.
+ */
+function stools_term_is_parent($term) {
+  $children = taxonomy_get_tree($term->vid, $term->tid);
+  if ($children) {
+    return TRUE;
+  }
+  return FALSE;
+}

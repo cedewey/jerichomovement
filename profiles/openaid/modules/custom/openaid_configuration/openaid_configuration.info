@@ -1,0 +1,13 @@
+name = OpenAid Configuration
+description = Manage OpenAid modules and features
+core = 7.x
+package = OpenAid
+
+files[] = tests/openaid_configuration.test
+
+; Information added by Drupal.org packaging script on 2014-11-21
+version = "7.x-2.0-rc2"
+core = "7.x"
+project = "openaid"
+datestamp = "1416608168"
+

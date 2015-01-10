@@ -1,0 +1,11 @@
+<?php
+/**
+ * Implements hook_requirements().
+ */
+function atom_wysiwyg_requirements($phase) {
+  $requirements = array();
+  if ($phase === 'runtime') {
+
+  }
+  return $requirements;
+}

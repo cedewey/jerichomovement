@@ -1,0 +1,30 @@
+name = Atom WYSIWYG Feature
+description = Enables WYSIWYG editing of content (bold, italic, links, etc.)
+core = 7.x
+package = Atom
+dependencies[] = atom_media_feature
+dependencies[] = ckeditor_link
+dependencies[] = ctools
+dependencies[] = emptyparagraphkiller
+dependencies[] = features
+dependencies[] = filter
+dependencies[] = strongarm
+dependencies[] = wysiwyg
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[filter][] = filtered_html
+features[filter][] = full_html
+features[user_permission][] = use text format filtered_html
+features[user_permission][] = use text format full_html
+features[variable][] = filter_fallback_format
+features[wysiwyg][] = filtered_html
+features[wysiwyg][] = full_html
+features_exclude[dependencies][atom_wysiwyg] = atom_wyiswyg
+features_exclude[dependencies][media_wysiwyg] = media_wysiwyg
+
+; Information added by Drupal.org packaging script on 2014-11-21
+version = "7.x-2.0-rc2"
+core = "7.x"
+project = "openaid"
+datestamp = "1416608168"
+
