@@ -7,13 +7,16 @@ projects[addressfield][subdir] = "contrib"
 projects[addressfield][version] = "1.0-beta5"
 
 projects[admin_menu][subdir] = "contrib"
-projects[admin_menu][version] = "3.x-dev"
+projects[admin_menu][version] = "3.0-rc5"
 
 projects[admin_views][subdir] = "contrib"
 projects[admin_views][version] = "1.3"
 
 projects[adminimal_admin_menu][subdir] = "contrib"
 projects[adminimal_admin_menu][version] = "1.5"
+
+projects[atom_about][subdir] = "contrib"
+projects[atom_about][version] = "1.0"
 
 projects[entity][subdir] = "contrib"
 projects[entity][version] = "1.x-dev"
@@ -22,10 +25,10 @@ projects[ckeditor_link][subdir] = "contrib"
 projects[ckeditor_link][version] = "2.3"
 
 projects[context][subdir] = "contrib"
-projects[context][version] = "3.3"
+projects[context][version] = "3.6"
 
 projects[ctools][subdir] = "contrib"
-projects[ctools][version] = "1.4"
+projects[ctools][version] = "1.5"
 
 projects[date][subdir] = "contrib"
 projects[date][version] = "2.8"
@@ -49,7 +52,7 @@ projects[extlink][subdir] = "contrib"
 projects[extlink][version] = "1.18"
 
 projects[features][subdir] = "contrib"
-projects[features][version] = "2.2"
+projects[features][version] = "2.3"
 
 projects[field_group][subdir] = "contrib"
 projects[field_group][version] = "1.4"
@@ -121,14 +124,13 @@ projects[pathauto][subdir] = "contrib"
 projects[pathauto][version] = "1.2"
 
 projects[plupload][subdir] = "contrib"
-projects[plupload][version] = "1.6"
+projects[plupload][version] = "1.7"
 
 projects[proj4js][subdir] = "contrib"
 projects[proj4js][version] = "1.2"
 
 projects[references_dialog][subdir] = "contrib"
 projects[references_dialog][version] = "1.x-dev"
-projects[references_dialog][patch][] = "https://www.drupal.org/files/issues/references_dialog_fix_theme_links-2315905-5.patch.patch"
 
 projects[sharethis][subdir] = "contrib"
 projects[sharethis][version] = "2.9"

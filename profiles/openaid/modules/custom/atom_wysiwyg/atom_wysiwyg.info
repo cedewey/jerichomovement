@@ -7,10 +7,3 @@ dependencies[] = atom_wysiwyg_feature
 dependencies[] = libraries
 dependencies[] = features
 dependencies[] = emptyparagraphkiller
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

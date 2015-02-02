@@ -46,10 +46,3 @@ features[variable][] = node_preview_marquee
 features[variable][] = node_submitted_marquee
 features[variable][] = pathauto_node_marquee_pattern
 features_exclude[dependencies][atom_marquee] = atom_marquee
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

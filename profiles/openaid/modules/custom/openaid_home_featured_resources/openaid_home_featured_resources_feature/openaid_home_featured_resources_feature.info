@@ -9,10 +9,3 @@ features[context][] = openaid_home_featured_resources
 features[ctools][] = context:context:3
 features[features_api][] = api:2
 project path = profiles/openaid/modules/modules/openaid_home_featured_resources
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

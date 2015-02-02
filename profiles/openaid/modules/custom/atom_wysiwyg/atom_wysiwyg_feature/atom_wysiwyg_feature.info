@@ -21,10 +21,3 @@ features[wysiwyg][] = filtered_html
 features[wysiwyg][] = full_html
 features_exclude[dependencies][atom_wysiwyg] = atom_wyiswyg
 features_exclude[dependencies][media_wysiwyg] = media_wysiwyg
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

@@ -75,10 +75,3 @@ features_exclude[dependencies][atom_project] = atom_project
 features_exclude[field_base][field_project_image_gallery] = field_project_image_gallery
 features_exclude[field_instance][node-project-field_project_image_gallery] = node-project-field_project_image_gallery
 mtime = 1415746594
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

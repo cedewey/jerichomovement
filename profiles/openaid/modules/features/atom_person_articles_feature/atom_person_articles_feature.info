@@ -28,10 +28,3 @@ features_exclude[field_instance][node-person-field_person_photo] = node-person-f
 features_exclude[field_instance][node-person-field_person_title_position] = node-person-field_person_title_position
 features_exclude[field_instance][node-person-field_person_twitter] = node-person-field_person_twitter
 features_exclude[field_instance][node-person-field_person_type] = node-person-field_person_type
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

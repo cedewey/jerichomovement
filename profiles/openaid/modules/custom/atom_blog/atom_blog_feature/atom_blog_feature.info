@@ -59,10 +59,3 @@ features_exclude[field_base][field_blog_related_projects] = field_blog_related_p
 features_exclude[field_instance][node-blog_post-field_blog_related_projects] = node-blog_post-field_blog_related_projects
 features_exclude[taxonomy][tags] = tags
 features_exclude[taxonomy][topics] = topics
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

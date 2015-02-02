@@ -18,10 +18,3 @@ files[] = includes/contextual_filter_filter_string.inc
 files[] = includes/views_contextual_filter_filter.info
 
 dependencies[] = views
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

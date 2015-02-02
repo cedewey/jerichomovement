@@ -1,6 +1,8 @@
 name = "OpenAid Site"
 description = "Install all the modules and features for an OpenAid base site."
 core = 7.x
+hidden = FALSE
+exclusive = 1
 dependencies[] = openaid_base
 dependencies[] = openaid_base_feature
 dependencies[] = admin_menu
@@ -67,10 +69,3 @@ dependencies[] = atom_tags_feature
 dependencies[] = atom_topics_feature
 
 files[] = openaid.profile
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

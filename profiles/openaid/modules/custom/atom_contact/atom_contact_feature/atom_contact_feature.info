@@ -25,10 +25,3 @@ features[variable][] = node_submitted_webform
 features[variable][] = pathauto_node_webform_pattern
 features_exclude[field_base][body] = body
 features_exclude[field_instance][node-webform-body] = node-webform-body
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

@@ -95,7 +95,7 @@ function atom_partners_feature_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['row_class'] = 'list-item';
-  $handler->display->display_options['style_options']['class'] = 'list--3up';
+  $handler->display->display_options['style_options']['class'] = 'list--ruled';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';

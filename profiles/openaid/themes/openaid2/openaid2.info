@@ -43,10 +43,3 @@ scripts[] = js/mainNav.js
 scripts[] = js/main.js
 
 ; Information added by Drupal.org packaging script on 2014-03-04
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

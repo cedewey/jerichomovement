@@ -46,11 +46,3 @@ features[variable][] = node_preview_partner
 features[variable][] = node_submitted_partner
 features[variable][] = pathauto_node_partner_pattern
 features[views_view][] = atom_partners
-mtime = 1415638003
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

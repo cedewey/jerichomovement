@@ -17,10 +17,3 @@ features[variable][] = search_active_modules
 features[variable][] = search_cron_limit
 features[variable][] = search_default_module
 features[variable][] = transliteration_search
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

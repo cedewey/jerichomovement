@@ -73,10 +73,3 @@ features_exclude[field_instance][node-resource-field_resource_related_projects] 
 features_exclude[field_instance][node-resource-body] = node-resource-body
 features_exclude[taxonomy][tags] = tags
 features_exclude[taxonomy][topics] = topics
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

@@ -9,10 +9,3 @@ dependencies[] = features
 features[features_api][] = api:2
 features[field_base][] = field_news_related_projects
 features[field_instance][] = node-news-field_news_related_projects
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-

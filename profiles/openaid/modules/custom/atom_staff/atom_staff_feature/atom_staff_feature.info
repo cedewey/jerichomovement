@@ -11,10 +11,3 @@ features[features_api][] = api:2
 features[views_view][] = atom_staff
 features_exclude[dependencies][ctools] = ctools
 features_exclude[dependencies][atom_staff] = atom_staff
-
-; Information added by Drupal.org packaging script on 2014-11-21
-version = "7.x-2.0-rc2"
-core = "7.x"
-project = "openaid"
-datestamp = "1416608168"
-
