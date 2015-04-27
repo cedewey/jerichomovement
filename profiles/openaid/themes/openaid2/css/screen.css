@@ -3937,6 +3937,7 @@ a > .fa, #block-search-form a > .form-actions:before,
   background-color: rgba(42, 42, 42, 0.95);
   font-size: 1.33333em;
   line-height: 1.125em;
+  margin-top: 93px; //CD changes 4/26/15
 }
 .marquee-content:after {
   content: "";
