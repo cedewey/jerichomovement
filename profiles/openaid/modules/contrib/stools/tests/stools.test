@@ -1,9 +1,12 @@
 <?php
+/**
+ * Tests
+ */
 
 /**
  * StoolsTests tests
  */
-class StoolsTests extends DrupalUnitTestCase {
+class StoolsTests extends DrupalWebTestCase {
   /**
    * Simple test info
    */
@@ -13,6 +16,36 @@ class StoolsTests extends DrupalUnitTestCase {
       'description' => 'Tests the stools module',
       'group' => 'Stools',
     );
+  }
+
+  /**
+   * Set up
+   */
+  public function setUp() {
+    parent::setUp(array('stools'));
+  }
+
+  /**
+   * Test stools_concat_field_values().
+   */
+  public function testFieldConcatValues() {
+    $entity = new stdClass();
+    $entity->field_example = array(
+      LANGUAGE_NONE => array(
+        array(
+          'value' => 'abc',
+        ),
+      ),
+    );
+    $entity->field_second_example = array(
+      LANGUAGE_NONE => array(
+        array(
+          'value' => 'def',
+        ),
+      ),
+    );
+
+    $this->assertEqual(stools_concat_field_values($entity, array('field_example', 'field_second_example')), 'abc, def');
   }
 
   /**
