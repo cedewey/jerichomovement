@@ -781,7 +781,7 @@ function references_dialog_field_widget_form(&$form, &$form_state, $field, $inst
 function references_dialog_term_reference_autocomplete_validate($element, &$form_state) {
   // Autocomplete widgets do not send their tids in the form, so we must detect
   // them here and process them independently.
-  $value = array();
+  $value = NULL;
   if ($element['#value']) {
     $term = FALSE;
     $field = field_widget_field($element, $form_state);

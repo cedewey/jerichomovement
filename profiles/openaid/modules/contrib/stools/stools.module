@@ -84,7 +84,10 @@ function stools_field_contains_value($entity, $field, $value, $language = LANGUA
     if (isset($field_value['value']) && $field_value['value'] === $value) {
       return TRUE;
     }
-    if (isset($field_value['target_id']) && $field_value['target_id'] === $value) {
+    if (isset($field_value['target_id']) && $field_value['target_id'] == $value) {
+      return TRUE;
+    }
+    if (isset($field_value['tid']) && $field_value['tid'] == $value) {
       return TRUE;
     }
   }
@@ -142,7 +145,15 @@ function stools_field_has_value($entity, $field, $language = LANGUAGE_NONE) {
 }
 
 /**
- * Get the value of a field
+ * Get the value of a field.
+ *
+ * Options:
+ * - simplify: true/false. This function will reduce the values of common fields
+ *   to their key values. If you want the raw value, you should set this to
+ *   FALSE. Supported types built in: value, target_id, product_id. See the
+ *   'key' option to specify your own!
+ * - key: string. If simplify is being used, you can specify a key you want
+ *   from array values.
  *
  * @param object $entity
  *   The entity object.
@@ -150,18 +161,31 @@ function stools_field_has_value($entity, $field, $language = LANGUAGE_NONE) {
  *   The field name to get the value of.
  * @param string $language
  *   The language. Defaults to LANGUAGE_NONE.
+ * @param array $options
+ *   An array of optional options.
  */
-function stools_field_value($entity, $field, $language = LANGUAGE_NONE) {
+function stools_field_value($entity, $field, $language = LANGUAGE_NONE, array $options = array()) {
+  $options = array_merge(array(
+    'simplify' => TRUE,
+    'key' => NULL,
+  ), $options);
+
   if (stools_field_has_value($entity, $field, $language)) {
     if (is_array($entity->{$field}) && isset($entity->{$field}[LANGUAGE_NONE])) {
       $count = count($entity->{$field}[$language]);
-      if (isset($entity->{$field}[$language][0]['value'])) {
-        // value based field
-        $key = 'value';
-      }
-      elseif (isset($entity->{$field}[$language][0]['target_id'])) {
-        // target_id field
-        $key = 'target_id';
+
+      // Simplify values are used to reduce the value of a field to the key
+      // information.
+      if ($options['simplify']) {
+        $simplify_values = array('value', 'target_id', 'product_id');
+        if ($options['key']) {
+          $simplify_values[] = $options['key'];
+        }
+        foreach ($simplify_values as $value) {
+          if (isset($entity->{$field}[$language][0][$value])) {
+            $key = $value;
+          }
+        }
       }
 
       // single value
@@ -175,9 +199,12 @@ function stools_field_value($entity, $field, $language = LANGUAGE_NONE) {
       $values = array();
       foreach ($entity->{$field}[$language] as $value) {
         $this_value = $value;
+
+        // simplify the value if we are doing that.
         if (isset($key)) {
           $this_value = $value[$key];
         }
+
         array_push($values, $this_value);
       }
       return $values;

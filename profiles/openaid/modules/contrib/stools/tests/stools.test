@@ -179,4 +179,18 @@ class StoolsTests extends DrupalWebTestCase {
     $this->assertFalse(stools_string_endswith('hello', 'hello, world'));
   }
 
+  /**
+   * Test stools_field_contains_value() with tid items.
+   */
+  public function testFieldContainsValueWithTid() {
+    $entity = new stdClass();
+    $entity->field_something = array(
+      'und' => array(
+        array('tid' => '111'),
+      ),
+    );
+
+    $this->assertTrue(stools_field_contains_value($entity, 'field_something'), 111);
+  }
+
 }
