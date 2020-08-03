@@ -2,7 +2,7 @@
   <?php if ($footer_logo): ?><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="footer-logo"><img src="<?php print $footer_logo; ?>" alt="<?php print $site_name; ?>" /></a><?php endif; ?>
   <div class="footer-inner">
     <?php print render($page['footer']); ?>
-    <p class="copyright">Copyright &copy; 2014 <?php echo check_plain(openaid2_get_setting('copyright', '')); ?></p>
+    <p class="copyright">Copyright &copy; 2018 <?php echo check_plain(openaid2_get_setting('copyright', '')); ?></p>
   </div>
 </div>
 
